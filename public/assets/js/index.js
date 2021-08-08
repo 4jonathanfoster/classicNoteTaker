@@ -10,15 +10,15 @@ if (window.location.pathname === '/notes.html') {
     newButton = document.querySelector('.new-note');
     nList = document.querySelectorAll('.list-container .list-group');
 }
-// Show an element
+// Show  element
 const show = (elem) => {
     elem.style.display = 'inline';
 };
-// Hide an element
+// Hide  element
 const hide = (elem) => {
     elem.style.display = 'none';
 };
-// activeNote is used to keep track of the note in the textarea
+// activeNote is used to keep track of the note in the text area
 let activeNote = {};
 const getNotes = () =>
     fetch('api/notes', {
@@ -64,7 +64,7 @@ const handleNoteSave = () => {
         renderActiveNotes();
     });
 };
-// Delete the clicked note
+// Delete seleceted note
 const handleNoteDelete = (e) => {
     // prevents the click listener for the list from being called when the button inside of it is clicked
     e.stopPropagation();
@@ -96,7 +96,7 @@ const handleRenderSaveButton = () => {
         show(saveButton);
     }
 };
-// Render the list of note titles
+// Renders the list of note titles
 const renderNoteList = async(notes) => {
     let jsonNotes = await notes.json();
     if (window.location.pathname === '/notes.html') {
