@@ -1,13 +1,13 @@
-let noteTitle;
-let noteText;
-let saveNoteBtn;
-let newNoteBtn;
+let nTitle;
+let nText;
+let saveButton;
+let newButton;
 let noteList;
 if (window.location.pathname === '/notes.html') {
-    noteTitle = document.querySelector('.note-title');
-    noteText = document.querySelector('.note-textarea');
-    saveNoteBtn = document.querySelector('.save-note');
-    newNoteBtn = document.querySelector('.new-note');
+    nTitle = document.querySelector('.note-title');
+    nText = document.querySelector('.note-textarea');
+    saveButton = document.querySelector('.save-note');
+    newButton = document.querySelector('.new-note');
     noteList = document.querySelectorAll('.list-container .list-group');
 }
 // Show an element
@@ -43,21 +43,21 @@ const deleteNote = (id) =>
         },
     });
 const renderActiveNote = () => {
-    hide(saveNoteBtn);
+    hide(saveButton);
     if (activeNote.id) {
-        noteTitle.setAttribute('readonly', true);
-        noteText.setAttribute('readonly', true);
-        noteTitle.value = activeNote.title;
-        noteText.value = activeNote.text;
+        title.setAttribute('readonly', true);
+        text.setAttribute('readonly', true);
+        title.value = activeNote.title;
+        text.value = activeNote.text;
     } else {
-        noteTitle.value = '';
-        noteText.value = '';
+        title.value = '';
+        text.value = '';
     }
 };
 const handleNoteSave = () => {
     const newNote = {
-        title: noteTitle.value,
-        text: noteText.value,
+        title: title.value,
+        text: text.value,
     };
     saveNote(newNote).then(() => {
         getAndRenderNotes();
@@ -90,10 +90,10 @@ const handleNewNoteView = (e) => {
     renderActiveNote();
 };
 const handleRenderSaveBtn = () => {
-    if (!noteTitle.value.trim() || !noteText.value.trim()) {
-        hide(saveNoteBtn);
+    if (!title.value.trim() || !text.value.trim()) {
+        hide(saveButton);
     } else {
-        show(saveNoteBtn);
+        show(saveButton);
     }
 };
 // Render the list of note titles
@@ -140,9 +140,9 @@ const renderNoteList = async(notes) => {
 // Gets notes from the db and renders them to the sidebar
 const getAndRenderNotes = () => getNotes().then(renderNoteList);
 if (window.location.pathname === '/notes.html') {
-    saveNoteBtn.addEventListener('click', handleNoteSave);
-    newNoteBtn.addEventListener('click', handleNewNoteView);
-    noteTitle.addEventListener('keyup', handleRenderSaveBtn);
-    noteText.addEventListener('keyup', handleRenderSaveBtn);
+    saveButton.addEventListener('click', handleNoteSave);
+    newButton.addEventListener('click', handleNewNoteView);
+    title.addEventListener('keyup', handleRenderSaveBtn);
+    text.addEventListener('keyup', handleRenderSaveBtn);
 }
 getAndRenderNotes();
