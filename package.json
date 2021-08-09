@@ -17,5 +17,8 @@
   "bugs": {
     "url": "https://github.com/4jonathanfoster/classicNoteTaker/issues"
   },
-  "homepage": "https://github.com/4jonathanfoster/classicNoteTaker#readme"
+  "homepage": "https://github.com/4jonathanfoster/classicNoteTaker#readme",
+  "dependencies": {
+    "express": "^4.17.1"
+  }
 }
