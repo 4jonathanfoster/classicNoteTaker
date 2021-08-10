@@ -31,7 +31,24 @@ app.post(`/api/notes`, (req,res) => {
 	res.send(db);
 })
 
+app.delete(`/api/notes/:id` , (req, res)=> {
+	console.log(`Delete`);
 
+  const removeIndex = db.findIndex( note => note.id === req.params.id );
+  db.splice(removeIndex, 1);
+	fs.writeFileSync("./db/db.json" , JSON.stringify(db), (err) => {
+		if(err) throw err;
+	});
+	res.send(db);
+})
+
+app.get('/notes' , (req,res) => 
+  res.sendFile(path.join(__dirname, '/public/notes.html'))
+);
+
+app.get('*' , (req,res) => 
+  res.sendFile(path.join(__dirname, '/public/index.html'))
+);
 
 
 app.listen(PORT, () => {
